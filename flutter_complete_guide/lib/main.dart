@@ -5,7 +5,17 @@ import 'package:flutter/material.dart';
 // }
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+// MyAppState는 MyApp의 상태를 저장하는 클래스
+class MyAppState extends State<MyApp> {
   var questionIndex = 0;
   var questions = [
     '제일 좋아하는 색이 뭐에요?',
@@ -13,7 +23,9 @@ class MyApp extends StatelessWidget {
   ];
 
   void answerQuestion() {
-    questionIndex += 1;
+    setState(() {
+      questionIndex += 1;
+    });
     print(questionIndex);
   }
 
@@ -26,7 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text(questions[0]),
+          Text(questions[questionIndex]),
           RaisedButton(
             child: Text('대답 1'),
             onPressed: answerQuestion,
